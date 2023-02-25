@@ -4,7 +4,7 @@
 */
 
 #include <Arduino.h>
-#include "classbot2.h"
+#include "SpaceTrek_ClassBot2.h"
 #include <Wire.h>
 #include <BQ25887.h>
 #include <VL53L0X.h>

@@ -1,10 +1,10 @@
 /*
 *
-*classbot2.h
+*SpaceTrek_ClassBot2.h
 *
 *Author:	Andrew Gafford
 *Email:		agafford@spacetrek.com
-*Date:		January 2023
+*Date:		Feb. 25th, 2023
 *
 *This library is for controling the Space Trek Class Bot 2.0.  It provides
 *control of the drive motors, sensors and RF comunication.

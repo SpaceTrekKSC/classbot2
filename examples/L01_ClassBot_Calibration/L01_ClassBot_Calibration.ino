@@ -3,13 +3,13 @@
  * 
  * Author: Andrew Gafford
  * email: agafford@spacetrek.com
- * Date: January 2023
+ * Date: Feb. 25th, 2023
  * 
  * This is an example program to calibrate the motor power settings and 
  * encoder pulses per distance for the Space Trek Class Bot 2.0.
  */
 
-#include <classbot2.h>                          //include the classbot2 library so we have the commands to use the robot
+#include <SpaceTrek_ClassBot2.h>                //include the classbot2 library so we have the commands to use the robot
 
 const uint32_t displayTime = 1000;              //how often in ms to send the motor power levels to the serial port
 uint32_t displayTimer = 0;                      //a variable to store processor clock count used to control the display timer
