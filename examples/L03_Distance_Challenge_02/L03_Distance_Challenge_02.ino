@@ -21,6 +21,12 @@ void setup() {                                  //the setup() funtion runs once 
   delay(500);                                   //wait 0.5 seconds to allow serial to connect
 
   classBot.begin();                             //start the classbot object.  Sets pinModes and sets up sensors
+  
+  //sets the LED strip to green
+  for(int i = 0; i < NUMPIXELS; i++){
+    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
+  }
+  pixels.show();
 
   
 
