@@ -5,7 +5,7 @@
  * email: agafford@spacetrek.com
  * Date: Feb. 25th, 2023
  * 
- * Use this program to complete the advanced distance challenge
+ * Use this program to complete the rectangle challenge
  *
  * You will need to use the calibration values from the previous
  * example.
