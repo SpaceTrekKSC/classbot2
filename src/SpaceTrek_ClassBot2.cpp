@@ -100,7 +100,7 @@ void Classbot::run(){
 			this->currentLeftDifference = this->currentLeftCount - this->previousLeftCount;
 			this->currentRightDifference = this->currentRightCount - this->previousRightCount;
 			
-			if(this->currentLeftDifference < this->currentRightDifference){		//reduce right power
+			if(this->currentLeftDifference < (this->currentRightDifference + this->currentBias)){		//reduce right power
 				if(this->leftPower == this->targetPower){
 					if(this->rightPower > MINIMUM_POWER){
 						this->rightPower--;
@@ -111,7 +111,7 @@ void Classbot::run(){
 					this->leftPower++;
 				}
 			}
-			else if(this->currentRightDifference < this->currentLeftDifference){
+			else if((this->currentRightDifference + this->currentBias) < this->currentLeftDifference){
 				if(this->rightPower == this->targetPower){
 					if(this->leftPower > MINIMUM_POWER){
 						this->leftPower--;
@@ -322,6 +322,7 @@ void Classbot::forward(){
 
 void Classbot::forward(float Distance){
 	BALANCE_POWER = true;
+	this->currentBias = this->forwardBias;
 	this->leftPower = this->powerLeftForwardAdjusted;
 	this->rightPower = this->powerRightForwardAdjusted;
 	float metersToTravel = Distance * this->meterDistanceForward;
@@ -339,6 +340,7 @@ void Classbot::forward(float Distance){
 
 void Classbot::goForward(){
 	BALANCE_POWER = true;
+	this->currentBias = this->forwardBias;
 	this->leftPower = this->powerLeftForwardAdjusted;
 	this->rightPower = this->powerRightForwardAdjusted;
 	
@@ -349,6 +351,7 @@ void Classbot::goForward(){
 
 void Classbot::forwardTime(float Time){
 	BALANCE_POWER = true;
+	this->currentBias = this->forwardBias;
 	this->leftPower = this->powerLeftForwardAdjusted;
 	this->rightPower = this->powerRightForwardAdjusted;
 	float timeMilliseconds = Time * 1000.0;
@@ -365,6 +368,7 @@ void Classbot::forwardTime(float Time){
 
 void Classbot::forwardRange(float Range){
 	BALANCE_POWER = true;
+	this->currentBias = this->forwardBias;
 	this->leftPower = this->powerLeftForwardAdjusted;
 	this->rightPower = this->powerRightForwardAdjusted;	
 	this->rangeDistance = distanceTOF.readRangeContinuousMillimeters();
@@ -411,6 +415,7 @@ void Classbot::reverse(){
 
 void Classbot::reverse(float Distance){
 	BALANCE_POWER = true;
+	this->currentBias = this->reverseBias;
 	this->leftPower = this->powerLeftReverseAdjusted;
 	this->rightPower = this->powerRightReverseAdjusted;
 	float metersToTravel = Distance * this->meterDistanceReverse;
@@ -428,6 +433,7 @@ void Classbot::reverse(float Distance){
 
 void Classbot::goReverse(){
 	BALANCE_POWER = true;
+	this->currentBias = this->reverseBias;
 	this->leftPower = this->powerLeftReverseAdjusted;
 	this->rightPower = this->powerRightReverseAdjusted;
 	
@@ -438,6 +444,7 @@ void Classbot::goReverse(){
 
 void Classbot::reverseTime(float Time){
 	BALANCE_POWER = true;
+	this->currentBias = this->reverseBias;
 	this->leftPower = this->powerLeftReverseAdjusted;
 	this->rightPower = this->powerRightReverseAdjusted;
 	float timeMilliseconds = Time * 1000.0;
@@ -472,6 +479,7 @@ void Classbot::pivotRight(){
 
 void Classbot::pivotRight(float Angle){
 	BALANCE_POWER = true;
+	this->currentBias = 0;
 	this->leftPower = this->powerLeftPivotRightAdjusted;
 	this->rightPower = this->powerRightPivotRightAdjusted;
 	float angleToTurn = (Angle * this->pivotRight90)/90.0;
@@ -488,6 +496,7 @@ void Classbot::pivotRight(float Angle){
 
 void Classbot::goPivotRight(){
 	BALANCE_POWER = true;
+	this->currentBias = 0;
 	this->leftPower = this->powerLeftPivotRightAdjusted;
 	this->rightPower = this->powerRightPivotRightAdjusted;
 	
@@ -515,6 +524,7 @@ void Classbot::pivotLeft(){
 
 void Classbot::pivotLeft(float Angle){
 	BALANCE_POWER = true;
+	this->currentBias = 0;
 	this->leftPower = this->powerLeftPivotLeftAdjusted;
 	this->rightPower = this->powerRightPivotLeftAdjusted;
 	float angleToTurn = (Angle * this->pivotLeft90)/90.0;
@@ -533,6 +543,7 @@ void Classbot::pivotLeft(float Angle){
 
 void Classbot::goPivotLeft(){
 	BALANCE_POWER = true;
+	this->currentBias = 0;
 	this->leftPower = this->powerLeftPivotLeftAdjusted;
 	this->rightPower = this->powerRightPivotLeftAdjusted;
 	
@@ -545,11 +556,13 @@ void Classbot::brake(){
 	PORTA |= B11110000;			//sets FRONT_A1 through _B2 HIGH)
 	PORTC |= B11111100;			//sets REAR_A1 through REAR_B2 HIGH and sets FRONT and REAR TB6612_EN HIGH)
 	BALANCE_POWER = false;
+	this->currentBias = 0;
 }
 
 void Classbot::standby(){
 	PORTC &= B11110011;				//sets PORTC pin 2 and 3 low (REAR_TB6612_EN and FRONT_TB6612_EN)
 	BALANCE_POWER = false;
+	this->currentBias = 0;
 }
 
 void Classbot::setPowerForward(uint16_t powerLeft, uint16_t powerRight){
@@ -604,6 +617,14 @@ void Classbot::setPowerReverse(uint16_t powerLeft, uint16_t powerRight){
 	this->powerLeftReverse = powerLeft;
 	
 	this->setSpeed(100);
+}
+
+void Classbot::setBiasForward(int8_t bias){
+	this->forwardBias = bias;
+}
+
+void Classbot::setBiasReverse(int8_t bias){
+	this->reverseBias = bias;
 }
 
 void Classbot::setPowerPivotRight(uint16_t powerLeft, uint16_t powerRight){

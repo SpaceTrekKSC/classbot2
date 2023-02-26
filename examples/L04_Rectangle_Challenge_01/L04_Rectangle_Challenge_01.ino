@@ -29,11 +29,13 @@ void setup() {                                  //the setup() funtion runs once 
   classBot.setPowerForward(255, 255);           //set the power level for the motors when moving forward (left side, right side)
   classBot.setPowerReverse(255, 255);           //set the power level for the motors when moving in reverse (left side, right side)
   classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting right
-  classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left              
+  classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left
+  classBot.setBiasForward(0);                   //set the forward bias. Negative goes more left, positive goes more right
+  classBot.setBiasReverse(0);                   //set the reverse bias. Negative goes more left, positive goes more right
 
   //calibration settings
-  classBot.setMeterDistanceForward(1400);       //set how many encoder pulses are needed to drive forward 1 meter
-  classBot.setMeterDistanceReverse(1400);       //set how many encoder pulses are needed to drive reverse 1 meter
+  classBot.setMeterDistanceForward(1500);       //set how many encoder pulses are needed to drive forward 1 meter
+  classBot.setMeterDistanceReverse(1500);       //set how many encoder pulses are needed to drive reverse 1 meter
   classBot.setPivotRight90(275);                //set how many encoder pulses are needed to pivot right 90 degrees
   classBot.setPivotLeft90(275);                 //set how many encoder pulses are needed to pivot left 90 degrees
 
@@ -43,8 +45,11 @@ void setup() {                                  //the setup() funtion runs once 
 //-----------------------------------------------------------------------------------------
 
   classBot.forward(1);                            //If your power and calibration values are corect this will make the robot drive forward 1 meter.
+  delay(250);
   classBot.pivotRight(90);                        //pivot to the right 90 degrees
+  delay(250);
   classBot.forward(0.5);                          //If your power and calibration values are corect this will make the robot drive forward 0.5 meter.
+  delay(250);
 
   //add more code to complete a 1 meter by 0.5 meter rectangle.
   //don't forget the final pivot so the robot is facing the correct way when done.

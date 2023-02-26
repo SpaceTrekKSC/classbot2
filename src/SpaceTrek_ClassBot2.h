@@ -166,6 +166,8 @@ class Classbot{
 		
 		void setPowerForward(uint16_t powerRight, uint16_t powerLeft);
 		void setPowerReverse(uint16_t powerRight, uint16_t powerLeft);
+		void setBiasForward(int8_t bias);
+		void setBiasReverse(int8_t bias);
 		void setPowerPivotRight(uint16_t powerLeft, uint16_t powerRight);
 		void setPowerPivotLeft(uint16_t powerLeft, uint16_t powerRight);
 		void setSpeed(float speed);
@@ -243,6 +245,10 @@ class Classbot{
 		uint8_t targetPower = MAXIMUM_POWER;
 		uint8_t leftPower = MAXIMUM_POWER;
 		uint8_t rightPower = MAXIMUM_POWER;
+		
+		int8_t forwardBias = 0;
+		int8_t reverseBias = 0;
+		int8_t currentBias = 0;
 		
 		
 		bool BALANCE_POWER = false;

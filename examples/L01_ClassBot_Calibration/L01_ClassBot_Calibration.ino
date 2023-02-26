@@ -22,14 +22,16 @@ void setup() {                                  //the setup() funtion runs once 
 
 //-------------------------------------- Drive Setup --------------------------------------
   //Power Settings
-  classBot.setPowerForward(255, 255);           //set the power level for the motors when moving forward (left side, right side)
+  classBot.setPowerForward(252, 255);           //set the power level for the motors when moving forward (left side, right side)
   classBot.setPowerReverse(255, 255);           //set the power level for the motors when moving in reverse (left side, right side)
   classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting right
-  classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left              
+  classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left
+  classBot.setBiasForward(0);                   //set the forward bias. Negative goes more left, positive goes more right
+  classBot.setBiasReverse(0);                   //set the reverse bias. Negative goes more left, positive goes more right
 
   //calibration settings
-  classBot.setMeterDistanceForward(1400);       //set how many encoder pulses are needed to drive forward 1 meter
-  classBot.setMeterDistanceReverse(1400);       //set how many encoder pulses are needed to drive reverse 1 meter
+  classBot.setMeterDistanceForward(1500);       //set how many encoder pulses are needed to drive forward 1 meter
+  classBot.setMeterDistanceReverse(1500);       //set how many encoder pulses are needed to drive reverse 1 meter
   classBot.setPivotRight90(275);                //set how many encoder pulses are needed to pivot right 90 degrees
   classBot.setPivotLeft90(275);                 //set how many encoder pulses are needed to pivot left 90 degrees
 
@@ -70,11 +72,11 @@ void setup() {                                  //the setup() funtion runs once 
   //your robot should end at the same place it started at.
 
   // classBot.forward(1);
-  // delay(500);
+  // delay(250);
   // classBot.pivotRight(90);
-  // delay(500);
+  // delay(250);
   // classBot.pivotLeft(90);
-  // delay(500);
+  // delay(250);
   // classBot.reverse(1);
 //-----------------------------------------------------------------------------------------
 }//end setup() function
@@ -88,8 +90,10 @@ void loop() {                                   //the loop() function runs repea
 
   if(millis() - displayTimer >= displayTime){
     displayTimer = millis();                    //reset the display timer
-    Serial.print("Left Power: "); Serial.print(classBot.getLeftPower());            //displays the left power
-    Serial.print("\tRight Power: "); Serial.println(classBot.getRightPower());      //displays the right power
+    Serial.print("Left Power: "); Serial.print(classBot.getLeftPower());                          //displays the left power
+    Serial.print("\tRight Power: "); Serial.println(classBot.getRightPower());                    //displays the right power
+    // Serial.print("Left Count: "); Serial.print(classBot.leftCount());                             //displays the left encoder count
+    // Serial.print("\tRight Count: "); Serial.println(classBot.rightCount());Serial.println();      //displays the right encoder count
   }
 }
 //-----------------------------------------------------------------------------------------

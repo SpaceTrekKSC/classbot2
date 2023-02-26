@@ -12,7 +12,6 @@
 //INCLUDES
 #include <SpaceTrek_ClassBot2.h>
 
-
 const uint32_t displayTime = 1000;
 uint32_t displayTimer = 0;
 
@@ -22,23 +21,22 @@ void setup() {
   Serial.begin(115200);
   delay(500);
 
-  classBot.debug(false);                        //turn debugging on or off
   classBot.begin();
 
   //Drive Setup
-  classBot.setPowerForward(255, 255);          //set the power level for the motors when moving forward (right side, left side)
-  classBot.setPowerReverse(255, 255);          //set the power level for the motors when moving fin reverse (right side, left side)
-  classBot.setPowerPivotRight(255, 255);                  //set the power level for the motors when pivoting left or right
-  classBot.setPowerPivotRight(255, 255);                  //set the power level for the motors when pivoting left or right
+  classBot.setPowerForward(255, 255);           //set the power level for the motors when moving forward (right side, left side)
+  classBot.setPowerReverse(255, 255);           //set the power level for the motors when moving fin reverse (right side, left side)
+  classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting left or right
+  classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting left or right
+  classBot.setBiasForward(0);                   //set the forward bias. Negative goes more left, positive goes more right
+  classBot.setBiasReverse(0);                   //set the reverse bias. Negative goes more left, positive goes more right
 
   classBot.setMeterDistanceForward(1500);       //set how many encoder pulses are needed to drive forward 1 meter
   classBot.setMeterDistanceReverse(1500);       //set how many encoder pulses are needed to drive in reverse 1 meter
-  classBot.setPivotRight90(300);               //set how many encoder pulses are needed to pivot right 90 degrees
-  classBot.setPivotLeft90(300);                //set how many encoder pulses are needed to pivot left 90 degrees
-  classBot.setSpeed(100.0);                     //set the speed for forward and reverse as percent of power
+  classBot.setPivotRight90(275);                //set how many encoder pulses are needed to pivot right 90 degrees
+  classBot.setPivotLeft90(275);                 //set how many encoder pulses are needed to pivot left 90 degrees
   
   delay(1000);
-  
 }
 
 void loop() {
@@ -46,11 +44,6 @@ void loop() {
   classBot.forwardRange(blockedDistance);
   delay(250);
   randomDirection();
-
-  // if(millis() - displayTimer >= displayTime){
-  //   displayTimer = millis();    //reset the display timer
-
-  // }
 }
 
 void randomDirection(){
