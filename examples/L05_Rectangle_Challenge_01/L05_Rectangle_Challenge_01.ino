@@ -1,11 +1,11 @@
 /*
- * L05_Track_Challenge_01.ino
+ * L05_Rectangle_Challenge_01.ino
  * 
  * Author: Andrew Gafford
  * email: agafford@spacetrek.com
  * Date: Feb. 25th, 2023
  * 
- * Use this program to complete the track challenge
+ * Use this program to complete the rectangle challenge
  *
  * You will need to use the calibration values from the previous
  * example.
@@ -21,6 +21,9 @@ void setup() {                                  //the setup() funtion runs once 
   delay(500);                                   //wait 0.5 seconds to allow serial to connect
 
   classBot.begin();                             //start the classbot object.  Sets pinModes and sets up sensors
+  classBot.setColor(ORANGE);                    //ets the LED to orange
+
+  
 
 //-------------------------------------- Drive Setup --------------------------------------
   //Power Settings
@@ -49,10 +52,8 @@ void setup() {                                  //the setup() funtion runs once 
   classBot.forward(0.5);                          //If your power and calibration values are corect this will make the robot drive forward 0.5 meter.
   delay(250);
 
-  //Use what you learned in the rectangle challenge to complete the track challenge.
-  //You need to keep the robot over the line at all times or you will lose points.
-  //Make your robot finish in the crater.  You want the center of your robot to
-  //end over the center of the cross mark in the crater.
+  //add more code to complete a 1 meter by 0.5 meter rectangle.
+  //don't forget the final pivot so the robot is facing the correct way when done.
 
 }//end setup() function
 

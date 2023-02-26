@@ -1,11 +1,11 @@
 /*
- * L03_Distance_Challenge_02.ino
+ * L06_Track_Challenge_01.ino
  * 
  * Author: Andrew Gafford
  * email: agafford@spacetrek.com
  * Date: Feb. 25th, 2023
  * 
- * Use this program to complete the advanced distance challenge
+ * Use this program to complete the track challenge
  *
  * You will need to use the calibration values from the previous
  * example.
@@ -21,18 +21,6 @@ void setup() {                                  //the setup() funtion runs once 
   delay(500);                                   //wait 0.5 seconds to allow serial to connect
 
   classBot.begin();                             //start the classbot object.  Sets pinModes and sets up sensors
-  
-  //sets the LED strip to green
-  for(int i = 0; i < NUMPIXELS; i++){
-    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
-  }
-  pixels.show();
-
-  //turns the LED strip green
-  for(int i = 0; i < NUMPIXELS; i++){
-    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
-  }
-  pixels.show();
 
 //-------------------------------------- Drive Setup --------------------------------------
   //Power Settings
@@ -54,12 +42,17 @@ void setup() {                                  //the setup() funtion runs once 
   delay(1000);                                  //wait for 1 second so the robot doesn't move as soon as you turn it on.
 //-----------------------------------------------------------------------------------------
 
-  classBot.forwardRange(150);                   //Drives forward until the distance sensor is about 150mm (0.15m) from an object
-  delay(500);                                   //a short delay
-  classBot.forward(0.10);                       //If your power and calibration values are corect this will make the robot drive forward about 0.12 meter.
+  classBot.forward(1);                            //If your power and calibration values are corect this will make the robot drive forward 1 meter.
+  delay(250);
+  classBot.pivotRight(90);                        //pivot to the right 90 degrees
+  delay(250);
+  classBot.forward(0.5);                          //If your power and calibration values are corect this will make the robot drive forward 0.5 meter.
+  delay(250);
 
-  //add more code to complete a 1 meter by 0.5 meter rectangle.
-  //don't forget the final pivot so the robot is facing the correct way when done.
+  //Use what you learned in the rectangle challenge to complete the track challenge.
+  //You need to keep the robot over the line at all times or you will lose points.
+  //Make your robot finish in the crater.  You want the center of your robot to
+  //end over the center of the cross mark in the crater.
 
 }//end setup() function
 

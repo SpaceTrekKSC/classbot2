@@ -93,7 +93,17 @@
 #define POWER_BALANCE_TIME		1000
 
 //#define DEBUG
-#define DEBUG_UPDATE_TIME			5000
+#define DEBUG_UPDATE_TIME		5000
+
+
+#define RED						0
+#define GREEN					1
+#define BLUE					2
+#define YELLOW					3
+#define ORANGE					4
+#define PURPLE					5
+#define WHITE					6
+#define OFF						10
 
 
 class Classbot{
@@ -180,6 +190,8 @@ class Classbot{
 		void setPivotRight90(uint32_t encoderCountAngle90);
 		void setPivotLeft90(uint32_t encoderCountAngle90);
 		
+		void setColor(uint8_t color);
+		
 		uint32_t avgCount();
 		void clearEncoders();	
 		
@@ -219,6 +231,7 @@ class Classbot{
 		void pivotLeft();
 
 		void updateBatLED();
+		void changeLED(uint8_t r, uint8_t g, uint8_t b);
 		
 		uint8_t powerRightForward = MAXIMUM_POWER;
 		uint8_t powerLeftForward = MAXIMUM_POWER;

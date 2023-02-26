@@ -735,6 +735,42 @@ void Classbot::setPivotLeft90(uint32_t encoderCountAngle90){
 	this->pivotLeft90 = encoderCountAngle90;
 }
 
+void Classbot::setColor(uint8_t color){
+	switch(color){
+		case RED:
+			this->changeLED(150, 0, 0);			//set LED to red
+			break;
+		case GREEN:
+			this->changeLED(0, 150, 0);			//set LED to green
+			break;
+		case BLUE:
+			this->changeLED(0, 0, 150);			//set LED to blue
+			break;
+		case YELLOW:
+			this->changeLED(120, 150, 0);		//set LED to YELLOW
+			break;
+		case ORANGE:
+			this->changeLED(150, 60, 0);		//set color to orange
+			break;
+		case PURPLE:
+			this->changeLED(150, 0, 150);		//set LED to purple
+			break;
+		case WHITE:
+			this->changeLED(100, 100, 100);		//set LED to white
+			break;
+		default:
+			this->changeLED(0, 0, 0);			//set to OFF
+			break;
+	}
+}
+
+void Classbot::changeLED(uint8_t r, uint8_t g, uint8_t b){
+	for(int i = 0; i < NUMPIXELS; i++){
+		pixels.setPixelColor(i, pixels.Color(r, g, b));
+	}
+	pixels.show();
+}
+
 uint32_t Classbot::avgCount(){
 	float average = (this->fleCounter + this->freCounter) / 2.0;
 	uint32_t avg = average;

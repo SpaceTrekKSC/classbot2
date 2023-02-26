@@ -1,11 +1,11 @@
 /*
- * L04_Rectangle_Challenge_01.ino
+ * L04_Distance_Challenge_02.ino
  * 
  * Author: Andrew Gafford
  * email: agafford@spacetrek.com
  * Date: Feb. 25th, 2023
  * 
- * Use this program to complete the rectangle challenge
+ * Use this program to complete the advanced distance challenge
  *
  * You will need to use the calibration values from the previous
  * example.
@@ -22,7 +22,7 @@ void setup() {                                  //the setup() funtion runs once 
 
   classBot.begin();                             //start the classbot object.  Sets pinModes and sets up sensors
 
-  
+  classBot.setColor(BLUE);                      //sets the LED strip to blue
 
 //-------------------------------------- Drive Setup --------------------------------------
   //Power Settings
@@ -44,15 +44,10 @@ void setup() {                                  //the setup() funtion runs once 
   delay(1000);                                  //wait for 1 second so the robot doesn't move as soon as you turn it on.
 //-----------------------------------------------------------------------------------------
 
-  classBot.forward(1);                            //If your power and calibration values are corect this will make the robot drive forward 1 meter.
-  delay(250);
-  classBot.pivotRight(90);                        //pivot to the right 90 degrees
-  delay(250);
-  classBot.forward(0.5);                          //If your power and calibration values are corect this will make the robot drive forward 0.5 meter.
-  delay(250);
-
-  //add more code to complete a 1 meter by 0.5 meter rectangle.
-  //don't forget the final pivot so the robot is facing the correct way when done.
+  classBot.forwardRange(150);                   //Drives forward until the distance sensor is about 150mm (0.15m) from an object
+  delay(250);                                   //a short delay
+  classBot.setSpeed(25);                        //set the speed to 25% so we can slowly finish our total distance
+  classBot.forward(0.08);                       //If your power and calibration values are corect this will make the robot drive forward about 0.08 meter.
 
 }//end setup() function
 
