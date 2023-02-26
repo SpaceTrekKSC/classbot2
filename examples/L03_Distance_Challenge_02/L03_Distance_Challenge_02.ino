@@ -28,6 +28,7 @@ void setup() {                                  //the setup() funtion runs once 
   }
   pixels.show();
 
+  //turns the LED strip green
   for(int i = 0; i < NUMPIXELS; i++){
     pixels.setPixelColor(i, pixels.Color(0, 150, 0));
   }

@@ -28,8 +28,8 @@ void setup() {                                  //the setup() funtion runs once 
   classBot.setPowerReverse(255, 255);           //set the power level for the motors when moving in reverse (left side, right side)
   classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting right
   classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left
-  classBot.setBiasForward(0);                  //set the forward bias. Negative goes more left, positive goes more right
-  classBot.setBiasReverse(0);                  //set the reverse bias. Negative goes more left, positive goes more right
+  classBot.setBiasForward(0);                   //set the forward bias. Negative goes more left, positive goes more right
+  classBot.setBiasReverse(0);                   //set the reverse bias. Negative goes more left, positive goes more right
 
   //calibration settings
   classBot.setMeterDistanceForward(1500);       //set how many encoder pulses are needed to drive forward 1 meter
