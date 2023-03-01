@@ -22,7 +22,7 @@ void setup() {                                  //the setup() funtion runs once 
 
 //-------------------------------------- Drive Setup --------------------------------------
   //Power Settings
-  classBot.setPowerForward(252, 255);           //set the power level for the motors when moving forward (left side, right side)
+  classBot.setPowerForward(255, 255);           //set the power level for the motors when moving forward (left side, right side)
   classBot.setPowerReverse(255, 255);           //set the power level for the motors when moving in reverse (left side, right side)
   classBot.setPowerPivotRight(255, 255);        //set the power level for the motors when pivoting right
   classBot.setPowerPivotLeft(255, 255);         //set the power level for the motors when pivoting left
