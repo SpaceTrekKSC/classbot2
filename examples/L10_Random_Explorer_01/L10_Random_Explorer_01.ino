@@ -18,7 +18,7 @@ uint32_t displayTimer = 0;
 float blockedDistance = 150.0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(500);
 
   classBot.begin();

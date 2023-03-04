@@ -15,7 +15,7 @@ const uint32_t displayTime = 1000;              //how often in ms to send the mo
 uint32_t displayTimer = 0;                      //a variable to store processor clock count used to control the display timer
 
 void setup() {                                  //the setup() funtion runs once when the program starts
-  Serial.begin(115200);                         //Start the serial connection to the PC
+  Serial.begin(9600);                         //Start the serial connection to the PC
   delay(500);                                   //wait 0.5 seconds to allow serial to connect
 
   classBot.begin();                             //start the classbot object.  Sets pinModes and sets up sensors 
