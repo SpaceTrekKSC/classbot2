@@ -61,8 +61,8 @@ void setup() {                                  //the setup() funtion runs once 
 
   // classBot.forward(1);
   // classBot.reverse(1);
-  // classBot.pivotRight(360);
-  // classBot.pivotLeft(360);
+  // classBot.pivotRight(90);
+  // classBot.pivotLeft(90);
 //-----------------------------------------------------------------------------------------
 
 
