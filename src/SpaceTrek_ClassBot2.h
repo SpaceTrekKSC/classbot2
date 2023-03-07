@@ -95,7 +95,7 @@
 //#define DEBUG
 #define DEBUG_UPDATE_TIME		5000
 
-
+//LED Colors
 #define RED						0
 #define GREEN					1
 #define BLUE					2
@@ -105,6 +105,30 @@
 #define WHITE					6
 #define OFF						10
 
+/*
+//Robot Numbers
+#define ASTRAEUS				0
+#define IO						1
+#define ANDROMEDA				2
+#define PANDORA					3
+#define TITAN					4
+#define BETELGEUSE				5
+#define DRACO					6
+#define SNOOPY					7
+#define APOPHIS					8
+#define CALLISTO				9
+#define PROXIMA					10
+#define RAMA					11
+#define PROTEUS					12
+#define PHOBOS					13
+#define GANYMEDE				14
+#define DEIMOS					15
+#define METZTLI					16
+#define PLACEHOLDER1			17
+#define PLACEHOLDER2			18
+#define PLACEHOLDER3			19
+#define PLACEHOLDER4			20
+*/
 
 class Classbot{
 	struct RGBC{
@@ -149,6 +173,9 @@ class Classbot{
 		
 		
 		void begin();
+		#ifdef CALIBRATION2
+		void begin(uint8_t robotNumber);
+		#endif
 		void run();
 		void getUserInput();
 		
@@ -174,21 +201,21 @@ class Classbot{
 		void standby();
 		
 		
-		void setPowerForward(uint16_t powerRight, uint16_t powerLeft);
-		void setPowerReverse(uint16_t powerRight, uint16_t powerLeft);
+		void setPowerForward(uint8_t powerRight, uint8_t powerLeft);
+		void setPowerReverse(uint8_t powerRight, uint8_t powerLeft);
 		void setBiasForward(int8_t bias);
 		void setBiasReverse(int8_t bias);
-		void setPowerPivotRight(uint16_t powerLeft, uint16_t powerRight);
-		void setPowerPivotLeft(uint16_t powerLeft, uint16_t powerRight);
+		void setPowerPivotRight(uint8_t powerLeft, uint8_t powerRight);
+		void setPowerPivotLeft(uint8_t powerLeft, uint8_t powerRight);
 		void setSpeed(float speed);
 		
 		uint8_t getLeftPower();
 		uint8_t getRightPower();
 		
-		void setMeterDistanceForward(uint32_t encoderCountMeter);
-		void setMeterDistanceReverse(uint32_t encoderCountMeter);
-		void setPivotRight90(uint32_t encoderCountAngle90);
-		void setPivotLeft90(uint32_t encoderCountAngle90);
+		void setMeterDistanceForward(uint16_t encoderCountMeter);
+		void setMeterDistanceReverse(uint16_t encoderCountMeter);
+		void setPivotRight90(uint16_t encoderCountAngle90);
+		void setPivotLeft90(uint16_t encoderCountAngle90);
 		
 		void setColor(uint8_t color);
 		
@@ -323,6 +350,34 @@ class Classbot{
 		bool TURN_LEFT = false;
 		bool TURN_RIGHT = false;
 		bool BRAKE = false;
+		
+		// callibration settings
+		
+		// int16_t calSettings[21][14] = {
+			// /*ASTRAEUS*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},		//!
+			// /*IO*/				{252, 255, 242, 255, 247, 255, 247, 255, -25, 0, 1650, 1650, 280, 280},		//!
+			// /*ANDROMEDA*/		{244, 255, 235, 255, 238, 255, 243, 255, -2, 0, 1665, 1655, 300, 295},		//!
+			// /*PANDORA*/			{255, 251, 246, 255, 255, 255, 255, 255, -5, 0, 1650, 1650, 300, 290},		//!
+			// /*TITAN*/			{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},		//X
+			// /*BETELGEUSE*/		{254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 2350},		//!
+			// /*DRACO*/			{255, 245, 255, 255, 255, 247, 255, 242, -5, -5, 1650, 1650, 300, 300},		//!
+			// /*SNOOPY*/			{255, 255, 235, 255, 245, 255, 246, 255, 0, 0, 1675, 1675, 285, 285},		//!
+			// /*APOPHIS*/			{255, 252, 249, 255, 255, 252, 252, 255, 0, -10, 1650, 1650, 290, 280},		//!
+			// /*CALLISTO*/		{255, 255, 246, 255, 248, 255, 252, 255, 0, -15, 1650, 1640, 290, 285},		//!
+			// /*PROXIMA*/			{255, 249, 250, 255, 255, 254, 255, 252, 4, -6, 1650, 1650, 285, 280},		//!
+			// /*RAMA*/			{255, 254, 247, 255, 250, 255, 253, 255, 15, 0, 1645, 1650, 280, 280},		//!
+			// /*PROTEUS*/			{255, 254, 248, 255, 250, 255, 254, 255, -4, -3, 1950, 1955, 340, 340},		//!
+			// /*PHOBOS*/			{237, 255, 227, 255, 234, 255, 234, 255, 0, 0, 1675, 1675, 305, 305},		//!
+			// /*GANYMEDE*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},		//X
+			// /*DEIMOS*/			{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},		//X
+			// /*METZTLI*/			{247, 255, 248, 255, 249, 255, 249, 255, 10, -10, 1650, 1650, 285, 285},	//1
+			// /*PLACEHOLDER*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},
+			// /*PLACEHOLDER*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},
+			// /*PLACEHOLDER*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},
+			// /*PLACEHOLDER*/		{255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290},
+		// };
+		
+		int16_t calSettings[14] = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
 
 };	
 

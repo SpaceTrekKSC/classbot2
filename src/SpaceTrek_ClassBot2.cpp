@@ -85,7 +85,192 @@ void Classbot::begin(){
 	if(USE_SERIAL){
 		printer->println("ClassBot 2.0 started...");
 	}
+	
+	#ifdef CALIBRATION
+		#ifdef ASTRAEUS
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef IO
+			this->calSettings = {252, 255, 242, 255, 247, 255, 247, 255, -25, 0, 1650, 1650, 280, 280};
+		#endif
+		#ifdef ANDROMEDA
+			this->calSettings = {244, 255, 235, 255, 238, 255, 243, 255, -2, 0, 1665, 1655, 300, 295};
+		#endif
+		#ifdef PANDORA
+			this->calSettings = {255, 251, 246, 255, 255, 255, 255, 255, -5, 0, 1650, 1650, 300, 290};
+		#endif
+		#ifdef TITAN
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef BETELGEUSE
+			this->calSettings = {254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 2350};
+		#endif
+		#ifdef DRACO
+			this->calSettings = {255, 245, 255, 255, 255, 247, 255, 242, -5, -5, 1650, 1650, 300, 300};
+		#endif
+		#ifdef SNOOPY
+			this->calSettings = {255, 255, 235, 255, 245, 255, 246, 255, 0, 0, 1675, 1675, 285, 285};
+		#endif
+		#ifdef APOPHIS
+			this->calSettings = {255, 252, 249, 255, 255, 252, 252, 255, 0, -10, 1650, 1650, 290, 280};
+		#endif
+		#ifdef CALLISTO
+			this->calSettings = {255, 255, 246, 255, 248, 255, 252, 255, 0, -15, 1650, 1640, 290, 285};
+		#endif
+		#ifdef PROXIMA
+			this->calSettings = {255, 249, 250, 255, 255, 254, 255, 252, 4, -6, 1650, 1650, 285, 280};
+		#endif
+		#ifdef RAMA
+			this->calSettings = {255, 254, 247, 255, 250, 255, 253, 255, 15, 0, 1645, 1650, 280, 280};
+		#endif
+		#ifdef PROTEUS
+			this->calSettings = {255, 254, 248, 255, 250, 255, 254, 255, -4, -3, 1950, 1955, 340, 340};
+		#endif
+		#ifdef PHOBOS
+			this->calSettings = {237, 255, 227, 255, 234, 255, 234, 255, 0, 0, 1675, 1675, 305, 305};
+		#endif
+		#ifdef GANYMEDE
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef DEIMOS
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef METZTLI
+			this->calSettings = {247, 255, 248, 255, 249, 255, 249, 255, 10, -10, 1650, 1650, 285, 285};
+		#endif
+		#ifdef PLACEHOLDER1
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef PLACEHOLDER2
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef PLACEHOLDER3
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		#ifdef PLACEHOLDER4
+			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		#endif
+		
+		//Power Settings
+		this->setPowerForward(calSettings[0], calSettings[1]);           	//set the power level for the motors when moving forward (left side, right side)
+		this->setPowerReverse(calSettings[2], calSettings[3]);           	//set the power level for the motors when moving in reverse (left side, right side)
+		this->setPowerPivotRight(calSettings[4], calSettings[5]);        	//set the power level for the motors when pivoting right
+		this->setPowerPivotLeft(calSettings[6], calSettings[7]);         	//set the power level for the motors when pivoting left
+		this->setBiasForward(calSettings[8]);                   			//set the forward bias. Negative goes more left, positive goes more right
+		this->setBiasReverse(calSettings[9]);                   			//set the reverse bias. Negative goes more left, positive goes more right
+
+		// calibration settings
+		this->setMeterDistanceForward(calSettings[10]);       				//set how many encoder pulses are needed to drive forward 1 meter
+		this->setMeterDistanceReverse(calSettings[11]);       				//set how many encoder pulses are needed to drive reverse 1 meter
+		this->setPivotRight90(calSettings[12]);                				//set how many encoder pulses are needed to pivot right 90 degrees
+		this->setPivotLeft90(calSettings[13]); 								//set how many encoder pulses are needed to pivot left 90 degrees
+	#endif
+	
 }
+
+
+#ifdef CALIBRATION2
+void Classbot::begin(uint8_t robotNumber){
+	this->begin();
+	//set callibration values
+	
+	/*
+	//Power Settings
+	this->setPowerForward(calSettings[robotNumber][0], calSettings[robotNumber][1]);           //set the power level for the motors when moving forward (left side, right side)
+	this->setPowerReverse(calSettings[robotNumber][2], calSettings[robotNumber][3]);           //set the power level for the motors when moving in reverse (left side, right side)
+	this->setPowerPivotRight(calSettings[robotNumber][4], calSettings[robotNumber][5]);        //set the power level for the motors when pivoting right
+	this->setPowerPivotLeft(calSettings[robotNumber][6], calSettings[robotNumber][7]);         //set the power level for the motors when pivoting left
+	this->setBiasForward(calSettings[robotNumber][8]);                   //set the forward bias. Negative goes more left, positive goes more right
+	this->setBiasReverse(calSettings[robotNumber][9]);                   //set the reverse bias. Negative goes more left, positive goes more right
+
+	// calibration settings
+	this->setMeterDistanceForward(calSettings[robotNumber][10]);       //set how many encoder pulses are needed to drive forward 1 meter
+	this->setMeterDistanceReverse(calSettings[robotNumber][11]);       //set how many encoder pulses are needed to drive reverse 1 meter
+	this->setPivotRight90(calSettings[robotNumber][12]);                //set how many encoder pulses are needed to pivot right 90 degrees
+	this->setPivotLeft90(calSettings[robotNumber][13]);                 //set how many encoder pulses are needed to pivot left 90 degrees
+	*/
+		
+		
+	#ifdef ASTRAEUS
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef IO
+		this->calSettings = {252, 255, 242, 255, 247, 255, 247, 255, -25, 0, 1650, 1650, 280, 280};
+	#endif
+	#ifdef ANDROMEDA
+		this->calSettings = {244, 255, 235, 255, 238, 255, 243, 255, -2, 0, 1665, 1655, 300, 295};
+	#endif
+	#ifdef PANDORA
+		this->calSettings = {255, 251, 246, 255, 255, 255, 255, 255, -5, 0, 1650, 1650, 300, 290};
+	#endif
+	#ifdef TITAN
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef BETELGEUSE
+		this->calSettings = {254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 2350};
+	#endif
+	#ifdef DRACO
+		this->calSettings = {255, 245, 255, 255, 255, 247, 255, 242, -5, -5, 1650, 1650, 300, 300};
+	#endif
+	#ifdef SNOOPY
+		this->calSettings = {255, 255, 235, 255, 245, 255, 246, 255, 0, 0, 1675, 1675, 285, 285};
+	#endif
+	#ifdef APOPHIS
+		this->calSettings = {255, 252, 249, 255, 255, 252, 252, 255, 0, -10, 1650, 1650, 290, 280};
+	#endif
+	#ifdef CALLISTO
+		this->calSettings = {255, 255, 246, 255, 248, 255, 252, 255, 0, -15, 1650, 1640, 290, 285};
+	#endif
+	#ifdef PROXIMA
+		this->calSettings = {255, 249, 250, 255, 255, 254, 255, 252, 4, -6, 1650, 1650, 285, 280};
+	#endif
+	#ifdef RAMA
+		this->calSettings = {255, 254, 247, 255, 250, 255, 253, 255, 15, 0, 1645, 1650, 280, 280};
+	#endif
+	#ifdef PROTEUS
+		this->calSettings = {255, 254, 248, 255, 250, 255, 254, 255, -4, -3, 1950, 1955, 340, 340};
+	#endif
+	#ifdef PHOBOS
+		this->calSettings = {237, 255, 227, 255, 234, 255, 234, 255, 0, 0, 1675, 1675, 305, 305};
+	#endif
+	#ifdef GANYMEDE
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef DEIMOS
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef METZTLI
+		this->calSettings = {247, 255, 248, 255, 249, 255, 249, 255, 10, -10, 1650, 1650, 285, 285};
+	#endif
+	#ifdef PLACEHOLDER1
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef PLACEHOLDER2
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef PLACEHOLDER3
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	#ifdef PLACEHOLDER4
+		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+	#endif
+	
+	//Power Settings
+	this->setPowerForward(calSettings[0], calSettings[1]);           	//set the power level for the motors when moving forward (left side, right side)
+	this->setPowerReverse(calSettings[2], calSettings[3]);           	//set the power level for the motors when moving in reverse (left side, right side)
+	this->setPowerPivotRight(calSettings[4], calSettings[5]);        	//set the power level for the motors when pivoting right
+	this->setPowerPivotLeft(calSettings[6], calSettings[7]);         	//set the power level for the motors when pivoting left
+	this->setBiasForward(calSettings[8]);                   			//set the forward bias. Negative goes more left, positive goes more right
+	this->setBiasReverse(calSettings[9]);                   			//set the reverse bias. Negative goes more left, positive goes more right
+
+	// calibration settings
+	this->setMeterDistanceForward(calSettings[10]);       				//set how many encoder pulses are needed to drive forward 1 meter
+	this->setMeterDistanceReverse(calSettings[11]);       				//set how many encoder pulses are needed to drive reverse 1 meter
+	this->setPivotRight90(calSettings[12]);                				//set how many encoder pulses are needed to pivot right 90 degrees
+	this->setPivotLeft90(calSettings[13]); 								//set how many encoder pulses are needed to pivot left 90 degrees
+}
+#endif
+
 
 void Classbot::run(){
 	//this->getUserInput();
@@ -126,7 +311,6 @@ void Classbot::run(){
 			analogWrite(FRONT_RIGHT_PWM, this->leftPower);
 			analogWrite(REAR_RIGHT_PWM, this->rightPower);
 			
-			//classBot.clearEncoders(); 				//clear encoder counts
 			PCICR |= B00000100;						//start encoder int
 			this->powerBalanceTimer = millis();
 			
@@ -565,11 +749,31 @@ void Classbot::standby(){
 	this->currentBias = 0;
 }
 
-void Classbot::setPowerForward(uint16_t powerLeft, uint16_t powerRight){
+void Classbot::setPowerForward(uint8_t powerLeft, uint8_t powerRight){
+	/*
 	if(powerLeft > MAXIMUM_POWER) powerLeft = MAXIMUM_POWER;
 	else if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
 	if(powerRight > MAXIMUM_POWER) powerRight = MAXIMUM_POWER;
 	else if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
+	
+	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
+		if(powerLeft > powerRight){
+			powerRight = MAXIMUM_POWER * (float(powerRight) / float(powerLeft));
+			powerLeft = MAXIMUM_POWER;
+		}
+		else if(powerRight > powerLeft){
+			powerLeft = MAXIMUM_POWER * (float(powerLeft) / float(powerRight));
+			powerRight = MAXIMUM_POWER;
+		}
+		else{
+			powerLeft = MAXIMUM_POWER;
+			powerRight = MAXIMUM_POWER;
+		}
+	}
+	*/
+	
+	if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
+	if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
 	
 	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
 		if(powerLeft > powerRight){
@@ -592,11 +796,31 @@ void Classbot::setPowerForward(uint16_t powerLeft, uint16_t powerRight){
 	this->setSpeed(100);
 }
 
-void Classbot::setPowerReverse(uint16_t powerLeft, uint16_t powerRight){
+void Classbot::setPowerReverse(uint8_t powerLeft, uint8_t powerRight){
+	/*
 	if(powerLeft > MAXIMUM_POWER) powerLeft = MAXIMUM_POWER;
 	else if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
 	if(powerRight > MAXIMUM_POWER) powerRight = MAXIMUM_POWER;
 	else if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
+	
+	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
+		if(powerLeft > powerRight){
+			powerRight = MAXIMUM_POWER * (float(powerRight) / float(powerLeft));
+			powerLeft = MAXIMUM_POWER;
+		}
+		else if(powerRight > powerLeft){
+			powerLeft = MAXIMUM_POWER * (float(powerLeft) / float(powerRight));
+			powerRight = MAXIMUM_POWER;
+		}
+		else{
+			powerLeft = MAXIMUM_POWER;
+			powerRight = MAXIMUM_POWER;
+		}
+	}
+	*/
+	
+	if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
+	if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
 	
 	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
 		if(powerLeft > powerRight){
@@ -627,11 +851,9 @@ void Classbot::setBiasReverse(int8_t bias){
 	this->reverseBias = bias;
 }
 
-void Classbot::setPowerPivotRight(uint16_t powerLeft, uint16_t powerRight){
-	if(powerLeft > MAXIMUM_POWER) powerLeft = MAXIMUM_POWER;
-	else if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
-	if(powerRight > MAXIMUM_POWER) powerRight = MAXIMUM_POWER;
-	else if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
+void Classbot::setPowerPivotRight(uint8_t powerLeft, uint8_t powerRight){
+	if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
+	if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
 	
 	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
 		if(powerLeft > powerRight){
@@ -654,11 +876,9 @@ void Classbot::setPowerPivotRight(uint16_t powerLeft, uint16_t powerRight){
 	this->setSpeed(100);
 }
 
-void Classbot::setPowerPivotLeft(uint16_t powerLeft, uint16_t powerRight){
-	if(powerLeft > MAXIMUM_POWER) powerLeft = MAXIMUM_POWER;
-	else if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
-	if(powerRight > MAXIMUM_POWER) powerRight = MAXIMUM_POWER;
-	else if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
+void Classbot::setPowerPivotLeft(uint8_t powerLeft, uint8_t powerRight){
+	if(powerLeft < MINIMUM_POWER) powerLeft = MINIMUM_POWER;
+	if(powerRight < MINIMUM_POWER) powerRight = MINIMUM_POWER;
 	
 	if((powerLeft != MAXIMUM_POWER) && (powerRight != MAXIMUM_POWER)){
 		if(powerLeft > powerRight){
@@ -719,19 +939,19 @@ uint8_t Classbot::getRightPower(){
 	return this->rightPower;
 }
 
-void Classbot::setMeterDistanceForward(uint32_t encoderCountMeter){
+void Classbot::setMeterDistanceForward(uint16_t encoderCountMeter){
 	this->meterDistanceForward = encoderCountMeter;
 }
 
-void Classbot::setMeterDistanceReverse(uint32_t encoderCountMeter){
+void Classbot::setMeterDistanceReverse(uint16_t encoderCountMeter){
 	this->meterDistanceReverse = encoderCountMeter;
 }
 
-void Classbot::setPivotRight90(uint32_t encoderCountAngle90){
+void Classbot::setPivotRight90(uint16_t encoderCountAngle90){
 	this->pivotRight90 = encoderCountAngle90;
 }
 
-void Classbot::setPivotLeft90(uint32_t encoderCountAngle90){
+void Classbot::setPivotLeft90(uint16_t encoderCountAngle90){
 	this->pivotLeft90 = encoderCountAngle90;
 }
 
