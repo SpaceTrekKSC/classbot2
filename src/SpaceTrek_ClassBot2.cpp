@@ -190,12 +190,12 @@ void Classbot::begin(){
 }
 
 
-#ifdef CALIBRATION2
+//#ifdef CALIBRATION2
 void Classbot::begin(uint8_t robotNumber){
 	this->begin();
 	//set callibration values
 	
-	/*
+	
 	//Power Settings
 	this->setPowerForward(calSettings[robotNumber][0], calSettings[robotNumber][1]);           //set the power level for the motors when moving forward (left side, right side)
 	this->setPowerReverse(calSettings[robotNumber][2], calSettings[robotNumber][3]);           //set the power level for the motors when moving in reverse (left side, right side)
@@ -209,9 +209,9 @@ void Classbot::begin(uint8_t robotNumber){
 	this->setMeterDistanceReverse(calSettings[robotNumber][11]);       //set how many encoder pulses are needed to drive reverse 1 meter
 	this->setPivotRight90(calSettings[robotNumber][12]);                //set how many encoder pulses are needed to pivot right 90 degrees
 	this->setPivotLeft90(calSettings[robotNumber][13]);                 //set how many encoder pulses are needed to pivot left 90 degrees
-	*/
+	
 		
-		
+	/*	
 	#ifdef ASTRAEUS
 		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
 		
@@ -276,7 +276,9 @@ void Classbot::begin(uint8_t robotNumber){
 	#ifdef PLACEHOLDER4
 		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
 	#endif
+	*/
 	
+	/*
 	//Power Settings
 	this->setPowerForward(calSettings[0], calSettings[1]);           	//set the power level for the motors when moving forward (left side, right side)
 	this->setPowerReverse(calSettings[2], calSettings[3]);           	//set the power level for the motors when moving in reverse (left side, right side)
@@ -290,8 +292,9 @@ void Classbot::begin(uint8_t robotNumber){
 	this->setMeterDistanceReverse(calSettings[11]);       				//set how many encoder pulses are needed to drive reverse 1 meter
 	this->setPivotRight90(calSettings[12]);                				//set how many encoder pulses are needed to pivot right 90 degrees
 	this->setPivotLeft90(calSettings[13]); 								//set how many encoder pulses are needed to pivot left 90 degrees
+	*/
 }
-#endif
+//#endif
 
 
 void Classbot::run(){
