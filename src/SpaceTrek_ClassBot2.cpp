@@ -89,66 +89,87 @@ void Classbot::begin(){
 	#ifdef CALIBRATION
 		#ifdef ASTRAEUS
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to ASTRAEUS");
 		#endif
 		#ifdef IO
 			this->calSettings = {252, 255, 242, 255, 247, 255, 247, 255, -25, 0, 1650, 1650, 280, 280};
+			printer->println("Robot set to IO");
 		#endif
 		#ifdef ANDROMEDA
 			this->calSettings = {244, 255, 235, 255, 238, 255, 243, 255, -2, 0, 1665, 1655, 300, 295};
+			printer->println("Robot set to ANDROMEDA");
 		#endif
 		#ifdef PANDORA
 			this->calSettings = {255, 251, 246, 255, 255, 255, 255, 255, -5, 0, 1650, 1650, 300, 290};
+			printer->println("Robot set to PANDORA");
 		#endif
 		#ifdef TITAN
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to TITAN");
 		#endif
 		#ifdef BETELGEUSE
 			this->calSettings = {254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 2350};
+			printer->println("Robot set to BETELGEUSE");
 		#endif
 		#ifdef DRACO
 			this->calSettings = {255, 245, 255, 255, 255, 247, 255, 242, -5, -5, 1650, 1650, 300, 300};
+			printer->println("Robot set to DRACO");
 		#endif
 		#ifdef SNOOPY
 			this->calSettings = {255, 255, 235, 255, 245, 255, 246, 255, 0, 0, 1675, 1675, 285, 285};
+			printer->println("Robot set to SNOOPY");
 		#endif
 		#ifdef APOPHIS
 			this->calSettings = {255, 252, 249, 255, 255, 252, 252, 255, 0, -10, 1650, 1650, 290, 280};
+			printer->println("Robot set to APOPHIS");
 		#endif
 		#ifdef CALLISTO
 			this->calSettings = {255, 255, 246, 255, 248, 255, 252, 255, 0, -15, 1650, 1640, 290, 285};
+			printer->println("Robot set to CALLISTO");
 		#endif
 		#ifdef PROXIMA
 			this->calSettings = {255, 249, 250, 255, 255, 254, 255, 252, 4, -6, 1650, 1650, 285, 280};
+			printer->println("Robot set to PROXIMA");
 		#endif
 		#ifdef RAMA
 			this->calSettings = {255, 254, 247, 255, 250, 255, 253, 255, 15, 0, 1645, 1650, 280, 280};
+			printer->println("Robot set to RAMA");
 		#endif
 		#ifdef PROTEUS
 			this->calSettings = {255, 254, 248, 255, 250, 255, 254, 255, -4, -3, 1950, 1955, 340, 340};
+			printer->println("Robot set to PROTEUS");
 		#endif
 		#ifdef PHOBOS
 			this->calSettings = {237, 255, 227, 255, 234, 255, 234, 255, 0, 0, 1675, 1675, 305, 305};
+			printer->println("Robot set to PHOBOS");
 		#endif
 		#ifdef GANYMEDE
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to GANYMEDE");
 		#endif
 		#ifdef DEIMOS
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to DEIMOS");
 		#endif
 		#ifdef METZTLI
 			this->calSettings = {247, 255, 248, 255, 249, 255, 249, 255, 10, -10, 1650, 1650, 285, 285};
+			printer->println("Robot set to METZTLI");
 		#endif
 		#ifdef PLACEHOLDER1
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to PLACEHOLDER1");
 		#endif
 		#ifdef PLACEHOLDER2
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to PLACEHOLDER2");
 		#endif
 		#ifdef PLACEHOLDER3
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to PLACEHOLDER3");
 		#endif
 		#ifdef PLACEHOLDER4
 			this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+			printer->println("Robot set to PLACEHOLDER4");
 		#endif
 		
 		//Power Settings
@@ -193,6 +214,7 @@ void Classbot::begin(uint8_t robotNumber){
 		
 	#ifdef ASTRAEUS
 		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
+		
 	#endif
 	#ifdef IO
 		this->calSettings = {252, 255, 242, 255, 247, 255, 247, 255, -25, 0, 1650, 1650, 280, 280};
