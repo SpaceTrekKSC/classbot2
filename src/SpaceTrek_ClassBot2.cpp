@@ -207,7 +207,7 @@ void Classbot::begin(uint8_t robotNumber){
 		this->calSettings = {255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 1650, 1650, 290, 290};
 	#endif
 	#ifdef BETELGEUSE
-		this->calSettings = {254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 2350};
+		this->calSettings = {254, 255, 245, 255, 255, 248, 255, 252, 0, 0, 2000, 1990, 355, 350};
 	#endif
 	#ifdef DRACO
 		this->calSettings = {255, 245, 255, 255, 255, 247, 255, 242, -5, -5, 1650, 1650, 300, 300};
