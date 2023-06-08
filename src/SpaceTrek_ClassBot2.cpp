@@ -10,7 +10,7 @@
 #include <VL53L0X.h>
 #include <Adafruit_APDS9960.h>
 #include <Adafruit_NeoPixel.h>
-#include <BNO055_support.h>
+//#include <BNO055_support.h>
 
 Classbot classBot = Classbot(Serial);
 BQ25887 charger = BQ25887();
@@ -75,8 +75,8 @@ void Classbot::begin(){
 
 	this->startVL53L0X();
 	
-	BNO_Init(&myBNO);
-	bno055_set_operation_mode(OPERATION_MODE_NDOF);
+	//BNO_Init(&myBNO);
+	//bno055_set_operation_mode(OPERATION_MODE_NDOF);
 	
 	if (USE_APDS_COLOR){
 		this->startAPDS9960();
@@ -357,9 +357,9 @@ void Classbot::run(){
 		
 	}
 	
-	if(millis() - this->bnoTimer >= BNO_UPDATE_TIME){
-		bno055_read_euler_hrp(&eulerData);
-	}
+//	if(millis() - this->bnoTimer >= BNO_UPDATE_TIME){
+//		bno055_read_euler_hrp(&eulerData);
+//	}
 
 	
 	if(USE_APDS_COLOR){

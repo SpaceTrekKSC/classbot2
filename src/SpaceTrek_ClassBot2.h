@@ -21,7 +21,7 @@
 #include <VL53L0X.h>
 #include <Adafruit_APDS9960.h>
 #include <Adafruit_NeoPixel.h>
-#include <BNO055_support.h>
+//#include <BNO055_support.h>
 
 //defines
 //PIN Definitions for the AES Robot Control Board
@@ -138,7 +138,7 @@ class Classbot{
 		uint16_t clear;
 	};
 	
-	struct bno055_t myBNO;
+	//struct bno055_t myBNO;
 	//struct bno055_euler eulerData;
 	
 	volatile uint8_t savePINK = 0;
@@ -245,7 +245,7 @@ class Classbot{
 		void useColor(bool onOff);
 		
 		//BNO055
-		struct bno055_euler eulerData;
+		//struct bno055_euler eulerData;
 		
 	
 	
@@ -340,7 +340,7 @@ class Classbot{
 		void getColors();
 		
 		//BNO055
-		uint32_t bnoTimer = 0;
+		//uint32_t bnoTimer = 0;
 		
 		//motion control
 		bool FORWARD = false;
